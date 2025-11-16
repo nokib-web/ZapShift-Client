@@ -2,6 +2,11 @@ import { createBrowserRouter } from "react-router";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home/Home";
 import Coverage from "../pages/Coverage/Coverage";
+import AuthLayout from "../layouts/AuthLayout";
+import Login from "../pages/Authentication/Login/Login";
+import Register from "../pages/Authentication/Register/Register";
+import Rider from "../pages/Rider/Rider";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -19,8 +24,27 @@ const router = createBrowserRouter([
                 Component: Coverage,
                 loader: () => fetch('/serviceCenters.json').then(res => res.json())
 
+            },
+            {
+                path: "rider",
+                element: <PrivateRoute><Rider /></PrivateRoute>
             }
         ]
     },
+    {
+        path: '/',
+        Component: AuthLayout,
+        children:[
+            {
+                path: 'login',
+                Component: Login
+            },
+            {
+                path: 'register',
+                Component: Register
+
+            }
+        ]
+    }
 ]);
 export default router;
