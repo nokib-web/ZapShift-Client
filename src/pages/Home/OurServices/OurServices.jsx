@@ -1,5 +1,5 @@
 // import React from "react";
-// import van from '../../../assets/delivery-van.png'
+import van from '../../../assets/delivery-van.png'
 
 // const services = [
 //     {
@@ -94,7 +94,7 @@ const OurServices = () => {
                 <div className="card rounded-2xl shadow-md p-6 bg-white text-black border">
                     <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 flex items-center justify-center bg-[#F0F5FF] rounded-full">
-                            <img className="text-2xl text-[#1B3D5D]" />
+                            <img src={van} alt="Delivery Van" className="w-6 h-6" />
                         </div>
                         <h3 className="font-semibold text-lg">Express & Standard Delivery</h3>
                         <p className="text-sm opacity-70 leading-relaxed">
@@ -108,7 +108,7 @@ const OurServices = () => {
                 <div className="card rounded-2xl shadow-md p-6 bg-[#C7EB4F] text-black border">
                     <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 flex items-center justify-center bg-[#F0F5FF] rounded-full">
-                            <img className="text-2xl text-[#1B3D5D]" />
+                            <img src={van} alt="Delivery Van" className="w-6 h-6" />
                         </div>
                         <h3 className="font-semibold text-lg">Nationwide Delivery</h3>
                         <p className="text-sm opacity-80 leading-relaxed">
@@ -121,7 +121,7 @@ const OurServices = () => {
                 <div className="card rounded-2xl shadow-md p-6 bg-white text-black border">
                     <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 flex items-center justify-center bg-[#F0F5FF] rounded-full">
-                            <img className="text-2xl text-[#1B3D5D]" />
+                            <img src={van} alt="Delivery Van" className="w-6 h-6" />
                         </div>
                         <h3 className="font-semibold text-lg">Fulfillment Solution</h3>
                         <p className="text-sm opacity-70 leading-relaxed">
@@ -134,7 +134,7 @@ const OurServices = () => {
                 <div className="card rounded-2xl shadow-md p-6 bg-white text-black border">
                     <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 flex items-center justify-center bg-[#F0F5FF] rounded-full">
-                            <img className="text-2xl text-[#1B3D5D]" />
+                            <img src={van} alt="Delivery Van" className="w-6 h-6" />
                         </div>
                         <h3 className="font-semibold text-lg">Cash on Home Delivery</h3>
                         <p className="text-sm opacity-70 leading-relaxed">
@@ -147,7 +147,7 @@ const OurServices = () => {
                 <div className="card rounded-2xl shadow-md p-6 bg-white text-black border">
                     <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 flex items-center justify-center bg-[#F0F5FF] rounded-full">
-                            <img className="text-2xl text-[#1B3D5D]" />
+                            <img src={van} alt="Delivery Van" className="w-6 h-6" />
                         </div>
                         <h3 className="font-semibold text-lg">Corporate Service / Logistics Contract</h3>
                         <p className="text-sm opacity-70 leading-relaxed">
@@ -160,7 +160,7 @@ const OurServices = () => {
                 <div className="card rounded-2xl shadow-md p-6 bg-white text-black border">
                     <div className="flex flex-col items-center text-center space-y-3">
                         <div className="w-12 h-12 flex items-center justify-center bg-[#F0F5FF] rounded-full">
-                            <img className="text-2xl text-[#1B3D5D]" />
+                            <img src={van} alt="Delivery Van" className="w-6 h-6" />
                         </div>
                         <h3 className="font-semibold text-lg">Parcel Return</h3>
                         <p className="text-sm opacity-70 leading-relaxed">

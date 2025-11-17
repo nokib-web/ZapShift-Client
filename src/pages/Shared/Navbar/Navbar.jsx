@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../../../components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import { MdOutlineArrowOutward } from "react-icons/md";
 
 const Navbar = () => {
 
@@ -45,7 +46,7 @@ const Navbar = () => {
                 ) : (
                     <Link to="/login" className="btn btn-outline btn-secondary">Login</Link>
                 )}
-                <Link to="/rider" className="btn ml-4  btn-primary text-black">Be a Rider </Link>
+                <Link to="/rider" className="btn ml-4  btn-primary text-black">Be a Rider <MdOutlineArrowOutward /> </Link>
             </div>
         </div>
     );

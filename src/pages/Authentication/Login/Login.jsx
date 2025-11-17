@@ -7,7 +7,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const {signInUser}= useAuth();
+    const {signInUser, forgotPassword}= useAuth();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -22,6 +22,19 @@ const Login = () => {
         .catch(error => {
             console.log(error.message);
         });
+    }
+
+    const handleForgotPassword = () => {
+        const email = prompt("Please enter your email for password reset:");
+        if (email) {
+            forgotPassword(email)
+            .then(() => {
+                alert("Password reset email sent!");
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
+        }
     }
 
     return (
@@ -43,7 +56,7 @@ const Login = () => {
                     {errors.password?.type === "minLength" && <span className="text-red-600">Password must be 6 characters or longer</span>}
 
 
-                    <div><a className="link link-hover">Forgot password?</a></div>
+                    <div><a onClick={handleForgotPassword} className="link link-hover">Forgot password?</a></div>
                     <button className="btn btn-neutral mt-4">Login</button>
                 </fieldset>
                 <p>New to ZapShift? <Link state={location.state}  to="/register" className="link text-blue-800 link-hover">Register here</Link></p>
