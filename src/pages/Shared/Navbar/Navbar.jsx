@@ -18,7 +18,11 @@ const Navbar = () => {
     <NavLink className='ml-4 lg:ml-6' to="/">Home</NavLink>
     <NavLink className='ml-4 lg:ml-6' to="/coverage">Coverage</NavLink>
     <NavLink className='ml-4 lg:ml-6' to="/about-us">About Us</NavLink>
-    <NavLink className='ml-4 lg:ml-6' to="/pricing">Pricing</NavLink>
+    <NavLink className='ml-4 lg:ml-6' to="/send-parcel">Send Parcel</NavLink>
+
+    {
+        user && <NavLink className='ml-4 lg:ml-6' to="/dashboard/my-parcels">Dashboard</NavLink>
+    }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
