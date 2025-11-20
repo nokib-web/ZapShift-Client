@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
@@ -8,8 +8,9 @@ import useAuth from '../../hooks/useAuth';
 const SendParcel = () => {
     const { register, handleSubmit, formState: { errors }, control } = useForm();
 
-    const {user}=useAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
 
     const serviceCenters = useLoaderData();
@@ -51,7 +52,7 @@ const SendParcel = () => {
             if (parcelWeight < 3) {
                 cost = isSameDistrict ? 110 : 150;
             }
-            
+
             else {
                 const minCharge = isSameDistrict ? 110 : 150;
                 const extraWeight = parcelWeight - 3;
@@ -70,24 +71,31 @@ const SendParcel = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Confirm"
+            confirmButtonText: "Confirm and continue payment!"
         }).then((result) => {
             if (result.isConfirmed) {
                 // proceed to place order
                 axiosSecure.post('/parcels', { ...data, cost: cost })
                     .then(res => {
-                        console.log(res.data);  
+                        console.log(res.data);
+                        if (res.data.insertedId) {
+                            navigate('/dashboard/my-parcels')
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your parcel has been created. Please Pay Now!",
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+
                     })
                     .catch(err => {
                         console.log(err);
                     });
 
 
-                Swal.fire({
-                    title: "Order Placed Successfully!",
-                    text: "Your order has been placed.",
-                    icon: "success"
-                });
+
             }
         });
 
