@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 const MyParcels = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    
+
 
 
     // tanstack query
@@ -56,13 +56,16 @@ const MyParcels = () => {
 
     }
 
-    const handlePayment = async (parcel)=>{
-        const paymentInfo ={
+    const handlePayment = async (parcel) => {
+     
+        const paymentInfo = {
             cost: parcel.cost,
             parcelId: parcel._id,
             senderEmail: parcel.senderEmail,
             parcelName: parcel.parcelName,
         }
+      
+
         const res = await axiosSecure.post('/payment-checkout-session', paymentInfo)
 
         window.location.assign(res.data.url);
@@ -98,12 +101,12 @@ const MyParcels = () => {
                                             :
 
                                             // By new api on backend
-                                            <button onClick={()=>handlePayment(parcel)} className='btn btn-sm btn-primary text-black'>
+                                            <button onClick={() => handlePayment(parcel)} className='btn btn-sm btn-primary text-black'>
                                                 pay
                                             </button>
 
-                                            // by old api on backend
-                                            // <Link to={`dashboard/payment/${parcel._id}`} className='text-black btn btn-sm btn-primary font-semibold'>Pay</Link>
+                                        // by old api on backend
+                                        // <Link to={`dashboard/payment/${parcel._id}`} className='text-black btn btn-sm btn-primary font-semibold'>Pay</Link>
                                     }
                                 </td>
                                 <td>Pending</td>
