@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { FaCheck, FaTrash } from 'react-icons/fa';
+import { FaCheck, FaEye, FaTrash } from 'react-icons/fa';
 import { IoPersonRemove } from "react-icons/io5";
 import Swal from 'sweetalert2';
 
@@ -108,6 +108,7 @@ const ApproveRider = () => {
                                     <button onClick={() => handleApproval(rider)} className="btn btn-sm"> <FaCheck /> </button>
                                     <button onClick={() => handleRejection(rider)} className="btn btn-sm"> <IoPersonRemove /> </button>
                                     <button onClick={() => handleDelete(rider._id)} className="btn btn-sm"> <FaTrash /> </button>
+                                    <button  className="btn btn-sm"> <FaEye /> </button>
                                 </td>
                             </tr>
 
