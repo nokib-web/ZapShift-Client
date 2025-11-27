@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from 'axios';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 
 const Register = () => {
@@ -13,11 +14,14 @@ const Register = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure()
 
     const handleRegistration = data => {
 
-        console.log('after register', data.photo[0]);
+        // console.log('after register', data.photo[0]);
         const profileImage = data.photo[0];
+
+        // console.log(data)
 
         registerUser(data.email, data.password)
             .then(result => {
@@ -34,18 +38,31 @@ const Register = () => {
                 axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host}`, formData)
                     .then(imgResponse => {
                         if (imgResponse.data.success) {
-                            const imgURL = imgResponse.data.data.display_url;
+                            const photoURL = imgResponse.data.data.url;
+                            // create user in the database
+                            const userInfo = {
+                                email: data.email,
+                                displayName: data.name,
+                                photoURL: photoURL,
+                            }
+                            axiosSecure.post('/users', userInfo)
+                            .then(res=>{
+                                if(res.data.insertedId){
+                                    console.log('user created in the database',)
+                                }
+                            })
+
                             // 1: update user profile with name and photo to firebase
                             const userProfile = {
                                 displayName: data.name,
-                                photoURL: imgURL
+                                photoURL: photoURL
                             }
                             updateUserProfile(userProfile)
                                 .then(() => { })
                                 .catch(err => console.log('profile update error', err));
                             // 2: navigate to home page after successful registration and profile update
                             navigate(location?.state || '/', { replace: true });
-                            console.log('image url', imgURL);
+                            console.log('image url', photoURL);
                         }
                     })
                     .catch(err => {
