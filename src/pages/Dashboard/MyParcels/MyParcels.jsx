@@ -84,6 +84,7 @@ const MyParcels = () => {
                             <th> Parcel Name</th>
                             <th> Cost</th>
                             <th> Payment</th>
+                            <th> Tracking Id</th>
                             <th> Delivery Status</th>
                             <th>Actions</th>
                         </tr>
@@ -94,6 +95,7 @@ const MyParcels = () => {
                                 <th>{index + 1}</th>
                                 <td>{parcel.parcelName}</td>
                                 <td>{parcel.cost}</td>
+                               
                                 <td>
                                     {
                                         parcel.paymentStatus === 'paid' ?
@@ -109,7 +111,9 @@ const MyParcels = () => {
                                         // <Link to={`dashboard/payment/${parcel._id}`} className='text-black btn btn-sm btn-primary font-semibold'>Pay</Link>
                                     }
                                 </td>
-                                <td>Pending</td>
+                                
+                                <td>{parcel.trackingId}</td>
+                                <td>{parcel.deliveryStatus}</td>
                                 <td>
                                     <button className='btn  btn-square hover:bg-primary'>
                                         <FaSearch /></button>
