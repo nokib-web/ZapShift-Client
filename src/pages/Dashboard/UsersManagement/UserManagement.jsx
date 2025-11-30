@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaUserShield } from 'react-icons/fa';
 import { FiShieldOff } from "react-icons/fi";
@@ -7,10 +7,11 @@ import Swal from 'sweetalert2';
 
 const UserManagement = () => {
     const axiosSecure = useAxiosSecure()
+    const [searchText, setSearchText]= useState('')
     const { refetch, data: users = [] } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['users', searchText],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users`);
+            const res = await axiosSecure.get(`/users?searchText=${searchText}`);
             return res.data
         }
     })
@@ -109,6 +110,18 @@ const UserManagement = () => {
     return (
         <div>
             <h className="text-3xl">Manage User: {users.length}</h>
+            <div>
+                   <label className="input">
+               {/* icon */}
+                <input 
+                onChange={(e)=>setSearchText(e.target.value)}
+                type="search" 
+                className="grow" 
+                placeholder="Search user" />
+               
+            </label>
+            </div>
+         
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

@@ -4,7 +4,8 @@ import { RxDashboard } from "react-icons/rx";
 import { CgMenuGridR } from "react-icons/cg";
 import { FcSettings } from "react-icons/fc";
 import { Link, NavLink, Outlet } from 'react-router';
-import { MdDirectionsBike } from 'react-icons/md';
+import { MdAssignmentInd, MdDirectionsBike } from 'react-icons/md';
+import { RiEBike2Fill } from "react-icons/ri";
 import useRole from '../hooks/useRole';
 
 const DashboardLayout = () => {
@@ -56,8 +57,22 @@ const DashboardLayout = () => {
                             </NavLink>
                         </li>
 
+                        {/* Rider only links */}
+                        {
+                            role === 'rider' && <>
+                                <li>
+                                    <NavLink to="/dashboard/assigned-deliveries" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assigned Deliveries">
+                                        {/* Dashboard icon */}
+                                        <MdAssignmentInd />
+                                        <span className="is-drawer-close:hidden">Assigned Deliveries</span>
+                                    </NavLink>
+                                </li>
+
+                            </>
+                        }
 
 
+                        {/* Admin only route */}
                         {
                             role === 'admin' && <>
 
@@ -66,6 +81,13 @@ const DashboardLayout = () => {
                                         {/* Dashboard icon */}
                                         <MdDirectionsBike />
                                         <span className="is-drawer-close:hidden">Approve Rider</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/assign-rider" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign Rider">
+                                        {/* Dashboard icon */}
+                                        <RiEBike2Fill />
+                                        <span className="is-drawer-close:hidden">Assign Rider</span>
                                     </NavLink>
                                 </li>
 
